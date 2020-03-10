@@ -2153,14 +2153,21 @@ public class Georradar extends Activity {
         }
     }
 
+
+    /**
+     * button16 open
+     * @param view
+     */
     public void guardas(View view) {
 
         ((Button) findViewById(R.id.button16)).getText().toString();
+        //可见
         mostrar();
         this.archivoelegido2 = this.archivoelegido;
         this.timer = new Timer();
         this.cuadro = null;
         this.pizarra.setImageBitmap(this.cuadro);
+
         this.myTimerTask = new MyTimerTask();
         this.timer.schedule(this.myTimerTask, 500);
         ((ImageView) findViewById(R.id.imageView2)).setVisibility(0);
@@ -2174,6 +2181,10 @@ public class Georradar extends Activity {
         }
     }
 
+    /**
+     * archivoelegido rd3 的位置
+     * 打开文件 rad
+     */
     public void abrerad() {
         String str = "";
         ((TextView) findViewById(R.id.textView9)).setText(this.lidioma[this.nidioma][32] + this.archivoelegido);
@@ -6511,6 +6522,7 @@ public class Georradar extends Activity {
         }
     }
 
+    //
     class MyTimerTask extends TimerTask {
         MyTimerTask() {
         }
