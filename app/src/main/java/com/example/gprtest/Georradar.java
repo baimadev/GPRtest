@@ -2221,6 +2221,9 @@ public class Georradar extends Activity {
         }
     }
 
+    /**
+     * 绘制主屏
+     */
     public void dibuja2() {
         float f = this.divi * 50.0f;
         this.paint_n.setColor(-16776961);
@@ -2228,6 +2231,7 @@ public class Georradar extends Activity {
         for (int i = 0; i < (this.col - this.der) - this.iz; i++) {
             int i2 = 0;
             while (i2 < (this.SAMPLES - this.fondo) - this.cerado) {
+
                 this.num = (this.ma2[i][i2] - this.min) / d;
                 if (this.num > 255.0d) {
                     this.num = 254.0d;
@@ -2235,6 +2239,8 @@ public class Georradar extends Activity {
                 if (this.num < 0.0d) {
                     this.num = 1.0d;
                 }
+
+
                 this.paint_n.setColor(coloj(this.num));
                 i2++;
                 this.canvas.drawRect((this.divi * ((float) i)) + f, (this.divi * ((float) i2)) + f, (this.divi * ((float) (i + 1))) + f, (this.divi * ((float) i2)) + f, this.paint_n);
@@ -3852,6 +3858,11 @@ public class Georradar extends Activity {
         this.pizarra.setImageBitmap(this.cuadro);
     }
 
+    /**
+     * colorj
+     * @param d
+     * @return
+     */
     public int coloj(double d) {
         return this.colorines[this.chivatocolor][(int) (d / 0.128d)];
     }
@@ -6557,6 +6568,10 @@ public class Georradar extends Activity {
         }
     }
 
+    /**
+     *
+     * 打开文件 rd3
+     */
     public void abrerd3() {
         if (this.LAST_TRACE <= 1000) {
             this.multiplus = 1;
@@ -6703,16 +6718,22 @@ public class Georradar extends Activity {
                 Georradar.this.TIMEWINDOW2 = Georradar.this.TIMEWINDOW;
                 Georradar.this.DISTANCE_INTERVAL2 = Georradar.this.DISTANCE_INTERVAL;
                 Georradar.this.col2 = Georradar.this.col;
-                Georradar.this.rotulos();
+
+                Georradar.this.rotulos();//????
+
                 ProgressDialog unused = Georradar.this.pDialog = new ProgressDialog(Georradar.this);
                 Georradar.this.pDialog.setProgressStyle(1);
                 Georradar.this.pDialog.setMessage(Georradar.this.lidioma[Georradar.this.nidioma][68] + Georradar.this.archivoelegido + Georradar.this.lidioma[Georradar.this.nidioma][69]);
                 Georradar.this.pDialog.setCancelable(true);
                 Georradar.this.pDialog.setMax(100);
-                Georradar.this.tarea2 = new MiTareaAsincronaDialog();
+
+                //执行异步读取文件
+                Georradar.this.tarea2 = new MiTareaAsincronaDialog();//????
                 Georradar.this.tarea2.execute(Georradar.this.directorioelegido + "/" + Georradar.this.archivoelegido);
             }
         });
+
+
         builder.setNegativeButton(this.lidioma[this.nidioma][73], new DialogInterface.OnClickListener() {
             /* class com.nieto.luis.gpr.Georradar.AnonymousClass28 */
 
@@ -6797,6 +6818,8 @@ public class Georradar extends Activity {
         });
         builder.show();
     }
+
+
 
     public void fullhd() {
         Math.ceil((double) (this.LAST_TRACE / 500));
@@ -6958,6 +6981,10 @@ public class Georradar extends Activity {
         builder.show();
     }
 
+
+    /**
+     * 真正的读取 rd3
+     */
     class MiTareaAsincronaDialog extends AsyncTask<String, Integer, Boolean> {
         int estouen = 1;
 
@@ -6966,6 +6993,7 @@ public class Georradar extends Activity {
 
         /* access modifiers changed from: protected */
         public Boolean doInBackground(String... strArr) {
+
             File file = new File(strArr[0]);
             long j = 1000;
             if (file.length() <= 1000) {
@@ -6977,11 +7005,14 @@ public class Georradar extends Activity {
             } else {
                 Georradar.this.pDialog.setMax(1000);
             }
+
+
             try {
                 DataInputStream dataInputStream = new DataInputStream(new FileInputStream(Georradar.this.directorioelegido + "/" + Georradar.this.archivoelegido));
                 for (int i = 0; i < Georradar.this.SAMPLES; i++) {
                     Georradar.this.ma0[Georradar.this.col][i] = 0.0d;
                 }
+
                 if (Georradar.this.voy == -1.0d) {
                     this.estouen = 1;
                     int i2 = 0;
@@ -6998,12 +7029,14 @@ public class Georradar extends Activity {
                                 Double.isNaN(d);
                                 double d2 = (double) readByte;
                                 Double.isNaN(d2);
-                                georradar.num = (d * 256.0d) + (d2 * 1.0d);
+                                georradar.num = (d * 256.0d) + (d2 * 1.0d); //读取方式
                                 Georradar.this.ma0[i2 / Georradar.this.multiplus][i3] = Georradar.this.num;
                                 double[] dArr = Georradar.this.ma0[Georradar.this.col];
                                 dArr[i3] = dArr[i3] + Georradar.this.num;
                             }
                         }
+
+                        //i4是进程
                         int i4 = (int) (((long) ((i2 * 2) * Georradar.this.SAMPLES)) / j);
                         if (i4 > length) {
                             i4 = length;
@@ -7025,10 +7058,14 @@ public class Georradar extends Activity {
                     dataInputStream.close();
                     return true;
                 }
+
+                //先空读n行 *2很关键
                 this.estouen = 0;
                 int i6 = ((int) Georradar.this.voy) * Georradar.this.SAMPLES * 2;
                 if (Georradar.this.voy != 0.0d) {
                     Georradar.this.pDialog.setMax(i6 / 1000);
+
+
                     int i7 = 0;
                     for (int i8 = 0; i8 < i6; i8++) {
                         dataInputStream.readByte();
@@ -7038,14 +7075,19 @@ public class Georradar extends Activity {
                             i7 = 0;
                         }
                     }
+
+
                     this.estouen = 0;
                 }
                 Georradar.this.pDialog.setMax(1000);
-                int i9 = 0;
+
+                int i9 = 0;  //读取1000行
+
                 while (true) {
                     if (i9 >= 1000) {
                         break;
                     }
+
                     for (int i10 = 0; i10 < Georradar.this.SAMPLES; i10++) {
                         byte readByte3 = dataInputStream.readByte();
                         byte readByte4 = dataInputStream.readByte();
@@ -7055,6 +7097,7 @@ public class Georradar extends Activity {
                         double d6 = (double) readByte3;
                         Double.isNaN(d6);
                         georradar2.num = (d5 * 256.0d) + (d6 * 1.0d);
+
                         Georradar.this.ma0[i9][i10] = Georradar.this.num;
                         double[] dArr3 = Georradar.this.ma0[Georradar.this.col];
                         dArr3[i10] = dArr3[i10] + Georradar.this.num;
@@ -7064,8 +7107,13 @@ public class Georradar extends Activity {
                     if (isCancelled()) {
                         break;
                     }
+
+
                     i9++;
                 }
+
+
+
                 for (int i11 = 0; i11 < Georradar.this.SAMPLES; i11++) {
                     double[] dArr4 = Georradar.this.ma0[Georradar.this.col];
                     double d7 = Georradar.this.ma0[Georradar.this.col][i11];
