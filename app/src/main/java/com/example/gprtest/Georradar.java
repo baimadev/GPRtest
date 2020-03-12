@@ -2183,7 +2183,7 @@ public class Georradar extends Activity {
 
     /**
      * archivoelegido rd3 的位置
-     * 打开文件 rad
+     * 读取rad
      */
     public void abrerad() {
         String str = "";
@@ -4701,6 +4701,7 @@ public class Georradar extends Activity {
         Toast.makeText(getApplicationContext(), this.lidioma[this.nidioma][48], 0).show();
     }
 
+    //画雷达图像
     public void dibujacerado() {
         rotulos();
         float f = this.divi * 50.0f;
@@ -5100,6 +5101,7 @@ public class Georradar extends Activity {
         } else {
             d = 1.0d;
         }
+        //折射 深度
         double sqrt = (2.99792458E8d / Math.sqrt(this.refraccion)) / 2.0E9d;
         double d14 = this.regladim;
         double d15 = (double) this.SAMPLES2;
@@ -5324,6 +5326,7 @@ public class Georradar extends Activity {
                 f24 += f23;
             } else {
                 this.canvas.drawLine(((float) this.col2) + f20 + 10.0f, ((float) this.SAMPLES2) + f20, ((float) this.col2) + f20 + 17.0f, ((float) this.SAMPLES2) + f20, this.paint_n);
+                //设置深度？
                 this.canvas.drawText(this.nF00.format(this.TIMEWINDOW2 * d2) + "m.", ((float) this.col2) + f20 + 17.0f, ((float) this.SAMPLES2) + f20, this.paint_n);
                 this.pizarra.setImageBitmap(this.cuadro);
                 diburegla2(this.pizarra.getScrollY());
@@ -6983,7 +6986,7 @@ public class Georradar extends Activity {
 
 
     /**
-     * 真正的读取 rd3
+     * 读取rd3
      */
     class MiTareaAsincronaDialog extends AsyncTask<String, Integer, Boolean> {
         int estouen = 1;
