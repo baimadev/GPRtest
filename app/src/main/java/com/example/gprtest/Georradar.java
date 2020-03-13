@@ -4278,6 +4278,8 @@ public class Georradar extends Activity {
         Double.isNaN(width);
         double d13 = width / (d2 - d9);
         int i6 = 1;
+
+        //画雷达？
         while (i6 < i2) {
             Canvas canvas2 = this.canvasc;
             int i7 = i2;
@@ -4294,6 +4296,7 @@ public class Georradar extends Activity {
             width = width;
             d13 = d15;
         }
+
         int i9 = i2;
         double d17 = width;
         double d18 = height;
@@ -5705,6 +5708,7 @@ public class Georradar extends Activity {
         this.paint_nb.setColor(-16776961);
         this.paint_nb.setStrokeWidth(width / 500.0f);
         this.canvasb = new Canvas(this.cuadrob);
+
         double d2 = (double) this.divi;
         Double.isNaN(d2);
         double d3 = (double) this.col2;
@@ -5853,6 +5857,7 @@ public class Georradar extends Activity {
             Double.isNaN(scaleY4);
             float f10 = f4;
             float f11 = (float) d33;
+            //
             this.canvasb.drawLine(f10, f11, (float) (d31 + ((d44 * scaleX3) / 1.0d)), (float) (d19 + (((((((Math.sqrt(Math.abs(((d41 * d41) / d30) + 1.0d)) * d29) - d29) * d45) / this.TIMEWINDOW2) / d) * scaleY4) / 1.0d)), this.paint_nb);
             double d46 = d20 * 10.0d;
             double sqrt3 = (Math.sqrt(Math.abs(((d46 * d46) / d30) + 1.0d)) * d29) - d29;
@@ -5924,6 +5929,9 @@ public class Georradar extends Activity {
         this.canvas.drawLine(((float) this.col2) + f17 + 10.0f, f17, ((float) this.col2) + f17 + 10.0f, ((float) this.SAMPLES2) + f17, this.paint_n);
         float f20 = this.TIMEWINDOW2 < 25.0d ? 0.1f : 0.5f;
         float f21 = 0.0f;
+
+
+
         while (true) {
             double d58 = (double) f21;
             if (d58 < this.TIMEWINDOW2 * d) {
