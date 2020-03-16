@@ -725,6 +725,7 @@ public class Georradar extends Activity {
         }
     }
 
+    //减少
     public void menosea(View view) {
         double d;
         double d2;
@@ -4506,13 +4507,16 @@ public class Georradar extends Activity {
         dibuja();
     }
 
+    //DC校正
     public void centrado(View view) {
         this.trunca = 1.0d;
         this.cero = 0.0d;
+
         TextView textView = (TextView) findViewById(R.id.textView10);
         RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) textView.getLayoutParams();
         layoutParams.addRule(5, R.id.imageButton3);
         textView.setLayoutParams(layoutParams);
+
         this.max -= this.cero;
         this.min -= this.cero;
         this.sincentrar = false;
@@ -4657,11 +4661,13 @@ public class Georradar extends Activity {
         fondobn();
     }
 
+    //时间零点
     public void ponceros(View view) {
         TextView textView = (TextView) findViewById(R.id.textView10);
         RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) textView.getLayoutParams();
         layoutParams.addRule(5, R.id.imageButton2a);
         textView.setLayoutParams(layoutParams);
+
         double[] dArr = new double[this.SAMPLES];
         int i = 1;
         while (true) {
