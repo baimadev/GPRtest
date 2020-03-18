@@ -2584,7 +2584,7 @@ public class Georradar extends Activity {
             }
         }
     }
-
+    //
     public void dibujacentrado() {
         rotulos();
         int i = (this.col - this.der) - this.iz;
@@ -2613,6 +2613,7 @@ public class Georradar extends Activity {
                 } else {
                     this.ma3[i3][i4] = this.ma2[i3][i4];
                 }
+
                 this.num = (this.ma2[i3][i4] - (this.min / this.trunca)) / d;
                 if (this.num > 255.0d) {
                     this.num = 255.0d;
@@ -2620,6 +2621,7 @@ public class Georradar extends Activity {
                 if (this.num < 0.0d) {
                     this.num = 0.0d;
                 }
+
                 if (this.ma3[i3][i4] > d2) {
                     this.ma3[i3][i4] = d2;
                 }
@@ -2634,6 +2636,9 @@ public class Georradar extends Activity {
             i3++;
             d4 = 0.9d;
         }
+
+
+
         this.pizarra.setImageBitmap(this.cuadro);
         this.pizarra.setScaleX(this.getescalex);
         this.pizarra.setScaleY(this.getescaley);
@@ -2828,6 +2833,7 @@ public class Georradar extends Activity {
         perfil(this.numerodelperfil);
     }
 
+    //垂直推导
     public void dibujaderideri() {
         rotulos();
         int i = (this.col - this.der) - this.iz;
@@ -2836,6 +2842,7 @@ public class Georradar extends Activity {
         this.paint_n.setColor(-16776961);
         double d = 0.0d;
         double d2 = 0.0d;
+
         for (int i3 = 0; i3 < i; i3++) {
             for (int i4 = 1; i4 < i2; i4++) {
                 if (this.chivoderi == 0) {
@@ -2844,10 +2851,13 @@ public class Georradar extends Activity {
                     this.ma3[i3][i4] = this.ma2[i3][i4] - this.ma2[i3][i4 - 1];
                 }
                 double[] dArr = this.ma3[i3];
+
                 double d3 = this.ma3[i3][i4] / this.max;
+
                 double d4 = (double) this.chivoderi;
-                Double.isNaN(d4);
+
                 dArr[i4] = Math.atan(d3 * d4);
+
                 if (this.ma3[i3][i4] > d) {
                     d = this.ma3[i3][i4];
                 }
@@ -2855,8 +2865,12 @@ public class Georradar extends Activity {
                     d2 = this.ma3[i3][i4];
                 }
             }
+
             this.ma3[i3][0] = 0.0d;
         }
+
+
+
         double d5 = (d - d2) / 256.0d;
         for (int i5 = 0; i5 < i; i5++) {
             int i6 = 0;
@@ -4870,6 +4884,7 @@ public class Georradar extends Activity {
         Toast.makeText(baseContext, this.lidioma[this.nidioma][49] + this.textoaux, 1).show();
     }
 
+    //垂直推导
     public void derideri(View view) {
         TextView textView = (TextView) findViewById(R.id.textView10);
         RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) textView.getLayoutParams();
@@ -4883,7 +4898,7 @@ public class Georradar extends Activity {
             public void onClick(DialogInterface dialogInterface, int i) {
                 Georradar.this.chivoderi = 1;
                 Georradar.this.dibujaderideri();
-                Georradar.this.chivozoom = 4;
+                Georradar.this.chivozoom = 4;  //垂直推导
                 Georradar.this.visible5();
                 ((Button) Georradar.this.findViewById(R.id.buttonnor)).setText(Georradar.this.nF00.format((long) Georradar.this.chivoderi));
             }
