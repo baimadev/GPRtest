@@ -41,6 +41,7 @@ import android.widget.Toast;
 import androidx.core.view.InputDeviceCompat;
 
 import com.example.gprtest.R;
+import com.example.gprtest.RealDoubleFFT;
 
 import ca.uol.aig.fftpack.RealDoubleFFT;
 import java.io.BufferedReader;
@@ -3053,6 +3054,7 @@ public class Georradar extends Activity {
         coletilla();
     }
 
+    //傅里叶
     public void dibufou() {
         RealDoubleFFT realDoubleFFT;
         int i;
@@ -3079,7 +3081,7 @@ public class Georradar extends Activity {
                 for (int i8 = 0; i8 < i2; i8++) {
                     dArr[i8] = this.ma2[i6][i7 + i8];
                 }
-                realDoubleFFT2.ft(dArr);
+                realDoubleFFT2.mo6045ft(dArr);
                 int i9 = 1;
                 double d6 = 0.0d;
                 double d7 = 0.0d;
@@ -3596,6 +3598,7 @@ public class Georradar extends Activity {
         throw new UnsupportedOperationException("Method not decompiled: com.nieto.luis.gpr.Georradar.dibufrec():void");
     }
 
+    //傅里叶
     public void frecuencio(View view) {
         TextView textView = (TextView) findViewById(R.id.textView10);
         RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) textView.getLayoutParams();
@@ -3613,6 +3616,7 @@ public class Georradar extends Activity {
         TextView textView2 = new TextView(this);
         builder.setView(textView2);
         textView2.setText(this.lidioma[this.nidioma][35]);
+
         builder.setPositiveButton(this.lidioma[this.nidioma][36], new DialogInterface.OnClickListener() {
             /* class com.nieto.luis.gpr.Georradar.AnonymousClass9 */
 
@@ -3621,13 +3625,17 @@ public class Georradar extends Activity {
                 Georradar.this.dibufrec();
             }
         });
+
+        //fuliye
         builder.setNegativeButton(this.lidioma[this.nidioma][37], new DialogInterface.OnClickListener() {
             /* class com.nieto.luis.gpr.Georradar.AnonymousClass10 */
 
             public void onClick(DialogInterface dialogInterface, int i) {
                 Georradar.this.chivozoom = 20;
                 ((Button) Georradar.this.findViewById(R.id.buttonnor)).setText(Georradar.this.nF00.format(Georradar.this.fouri));
+
                 Toast.makeText(Georradar.this.getApplicationContext(), Georradar.this.lidioma[Georradar.this.nidioma][38], 0).show();
+
                 new Timer().schedule(new TimerTask() {
                     /* class com.nieto.luis.gpr.Georradar.AnonymousClass10.AnonymousClass1 */
 
@@ -6175,6 +6183,7 @@ public class Georradar extends Activity {
         }
     }
 
+    //平滑
     public void dibujasuave() {
         int i;
         rotulos();
@@ -6325,6 +6334,7 @@ public class Georradar extends Activity {
         perfil(this.numerodelperfil);
     }
 
+    //平滑
     public void suave(View view) {
         TextView textView = (TextView) findViewById(R.id.textView10);
         RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) textView.getLayoutParams();
@@ -6332,6 +6342,7 @@ public class Georradar extends Activity {
         textView.setLayoutParams(layoutParams);
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(this.lidioma[this.nidioma][63]);
+
         builder.setPositiveButton("Vertical\nSmooth", new DialogInterface.OnClickListener() {
             /* class com.nieto.luis.gpr.Georradar.AnonymousClass22 */
 
