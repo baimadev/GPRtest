@@ -846,6 +846,7 @@ public class Georradar extends Activity {
             ((Button) findViewById(R.id.buttonnor)).setText(this.nF00.format(this.suavitoh));
             dibujasuaveh();
         }
+        //11
         if (this.chivozoom == 11) {
             double d13 = (double) this.divi;
             Double.isNaN(d13);
@@ -3811,6 +3812,7 @@ public class Georradar extends Activity {
         dibujanorma();
     }
 
+    //截断
     public void ganancia(View view) {
         TextView textView = (TextView) findViewById(R.id.textView10);
         RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) textView.getLayoutParams();
@@ -3818,6 +3820,7 @@ public class Georradar extends Activity {
         textView.setLayoutParams(layoutParams);
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(this.lidioma[this.nidioma][40]);
+        //potential
         builder.setPositiveButton(this.lidioma[this.nidioma][41], new DialogInterface.OnClickListener() {
             /* class com.nieto.luis.gpr.Georradar.AnonymousClass11 */
 
@@ -3831,6 +3834,7 @@ public class Georradar extends Activity {
                 Georradar.this.chivozoom = 1;
             }
         });
+        //弧形
         builder.setNegativeButton(this.lidioma[this.nidioma][42], new DialogInterface.OnClickListener() {
             /* class com.nieto.luis.gpr.Georradar.AnonymousClass12 */
 
@@ -5464,27 +5468,33 @@ public class Georradar extends Activity {
         this.pizarrac.setImageBitmap(this.cuadroc);
     }
 
+    //测量
     public void regla(View view) {
         TextView textView = (TextView) findViewById(R.id.textView10);
         RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) textView.getLayoutParams();
         layoutParams.addRule(5, R.id.imageButton12);
         textView.setLayoutParams(layoutParams);
+
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(this.lidioma[this.nidioma][54]);
         final EditText editText = new EditText(this);
         builder.setView(editText);
         editText.setText(this.nF00.format(this.refraccion).replace(",", "."));
         editText.setInputType(8194);
+
         builder.setPositiveButton(this.lidioma[this.nidioma][55], new DialogInterface.OnClickListener() {
             /* class com.nieto.luis.gpr.Georradar.AnonymousClass16 */
 
             public void onClick(DialogInterface dialogInterface, int i) {
                 double cuantoes = Georradar.this.cuantoes(editText.getText().toString());
-                if (cuantoes >= 0.0d) {
+                if (cuantoes >= 0.0d) {  //refraction cuantoes 介电常数
                     Georradar.this.refraccion = cuantoes;
                     ((Button) Georradar.this.findViewById(R.id.buttonnor)).setText(Georradar.this.nF00.format(Georradar.this.refraccion));
+
                     Georradar.this.chivozoom = 11;
+
                     Georradar.this.visible5();
+
                     ((Button) Georradar.this.findViewById(R.id.buttonnor)).setText(Georradar.this.nF00.format(Georradar.this.regladim));
                     Georradar.this.lanzaregla();
                     return;
@@ -5506,6 +5516,7 @@ public class Georradar extends Activity {
         builder.setTitle(this.lidioma[this.nidioma][57]);
         TextView textView = new TextView(this);
         builder.setView(textView);
+
         if (this.DISTANCE_INTERVAL > 0.0d) {
             textView.setText(this.lidioma[this.nidioma][58]);
         } else {
